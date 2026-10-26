@@ -3364,58 +3364,57 @@ button, input, select {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 14px 40px;
+  padding: 30px 16px 50px;
 }
 
 /* Centered Haute Couture Atelier Card */
 .atelier-auth-card {
   width: 100%;
-  max-width: 470px;
+  max-width: 440px;
   background: #FFFFFF;
   border-radius: 20px;
-  padding: 30px 28px;
+  padding: 34px 30px;
   border: 1px solid rgba(198, 162, 92, 0.35);
-  box-shadow: 0 20px 50px rgba(30, 41, 31, 0.1);
+  box-shadow: 0 20px 50px rgba(30, 41, 31, 0.08);
   text-align: center;
-  animation: modalScale 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: modalScale 0.32s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .atelier-card-crest {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
-.crest-halo-gold {
-  width: 42px;
-  height: 42px;
+.crest-seal {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(209, 221, 194, 0.5) 0%, rgba(198, 162, 92, 0.2) 100%);
-  border: 1px solid rgba(198, 162, 92, 0.45);
+  background: linear-gradient(135deg, rgba(209, 221, 194, 0.5) 0%, rgba(198, 162, 92, 0.25) 100%);
+  border: 1.5px solid rgba(198, 162, 92, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
-  box-shadow: 0 4px 12px rgba(198, 162, 92, 0.2);
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(198, 162, 92, 0.15);
 }
 
-.crest-eyebrow {
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
+.crest-seal span {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--palette-forest-moss);
-  display: block;
-  margin-bottom: 3px;
+  color: var(--palette-forest-dark);
+  line-height: 1;
 }
 
 .crest-headline {
   font-family: var(--font-serif);
-  font-size: 1.85rem;
+  font-size: 1.95rem;
   font-weight: 600;
   color: var(--palette-forest-dark);
-  line-height: 1.18;
-  margin: 0 0 5px;
+  line-height: 1.15;
+  margin: 0 0 6px;
 }
 
 .crest-tagline {
@@ -3425,130 +3424,67 @@ button, input, select {
   margin: 0;
 }
 
-/* Order in Progress Pill */
-.atelier-order-preview {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(246, 247, 238, 0.9);
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  padding: 10px 14px;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.order-preview-thumb {
-  width: 42px;
-  height: 52px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid var(--border-light);
-}
-
-.order-preview-meta {
-  display: flex;
-  flex-direction: column;
-}
-
-.preview-label {
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  color: var(--palette-forest-moss);
-  font-weight: 700;
-}
-
-.preview-name {
-  font-size: 0.86rem;
-  color: var(--palette-forest-dark);
-  line-height: 1.25;
-}
-
-.preview-price {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-}
-
-/* Mode Switch Tabs */
+/* Minimalist Underline Mode Tabs */
 .atelier-tabs-nav {
   display: flex;
-  background: rgba(209, 221, 194, 0.3);
-  padding: 4px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  border: 1px solid var(--border-light);
+  border-bottom: 1.5px solid var(--border-light);
+  margin-bottom: 22px;
+  gap: 12px;
 }
 
 .atelier-tab-btn {
   flex: 1;
-  padding: 10px 12px;
-  border-radius: 8px;
+  padding: 10px 8px;
   border: none;
   background: transparent;
   font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
   cursor: pointer;
   transition: all 0.2s ease;
+  position: relative;
+  border-bottom: 2.5px solid transparent;
+  margin-bottom: -1.5px;
+}
+
+.atelier-tab-btn:hover {
+  color: var(--palette-forest-dark);
 }
 
 .atelier-tab-btn.active {
-  background: #FFFFFF;
   color: var(--palette-forest-dark);
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(30, 41, 31, 0.08);
+  border-bottom-color: var(--palette-forest-moss);
 }
 
-/* 1-Click VIP Patron Demo Access */
-.atelier-vip-demo-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: linear-gradient(135deg, rgba(209, 221, 194, 0.45) 0%, rgba(246, 247, 238, 0.95) 100%);
-  border: 1.5px dashed rgba(198, 162, 92, 0.6);
-  border-radius: 12px;
-  padding: 12px 16px;
-  margin-bottom: 22px;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.22s ease;
-}
-
-.atelier-vip-demo-card:hover {
-  background: linear-gradient(135deg, rgba(209, 221, 194, 0.7) 0%, #FFFFFF 100%);
-  border-color: var(--palette-forest-moss);
-  transform: translateY(-1.5px);
-  box-shadow: 0 6px 18px rgba(30, 41, 31, 0.08);
-}
-
-.vip-icon-wrap {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #FFFFFF;
+/* Clean, Sleek VIP Demo Access Pill (below submit button) */
+.atelier-vip-pill {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  flex-shrink: 0;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(209, 221, 194, 0.3);
+  border: 1px solid rgba(198, 162, 92, 0.4);
+  border-radius: 12px;
+  font-size: 0.74rem;
+  color: var(--palette-forest-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
 }
 
-.vip-text-wrap {
-  display: flex;
-  flex-direction: column;
+.atelier-vip-pill:hover {
+  background: rgba(209, 221, 194, 0.6);
+  border-color: var(--palette-forest-moss);
+  transform: translateY(-1px);
 }
 
-.vip-badge-tag {
-  font-size: 0.64rem;
-  letter-spacing: 0.12em;
-  color: var(--palette-forest-moss);
+.atelier-vip-pill strong {
   font-weight: 700;
-  text-transform: uppercase;
-}
-
-.vip-text-wrap strong {
-  font-size: 0.84rem;
   color: var(--palette-forest-dark);
 }
 
@@ -3701,13 +3637,23 @@ button, input, select {
 }
 
 .atelier-guest-wrap {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.atelier-guest-or {
+  font-size: 0.74rem;
+  color: var(--text-light);
+  font-style: italic;
 }
 
 .atelier-guest-btn {
   background: none;
   border: none;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--palette-forest-moss);
   font-weight: 600;
   cursor: pointer;
