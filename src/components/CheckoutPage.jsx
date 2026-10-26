@@ -150,30 +150,31 @@ export default function CheckoutPage({
       {/* Main Checkout Workspace */}
       <div className="checkout-body-wrapper">
         {step < 3 ? (
-          <div className="checkout-grid-2col">
-            {/* Left Column: Form & Payment Steps */}
-            <div className="checkout-left-col">
-              {/* Stepper Tabs */}
-              <div className="checkout-steps-pill-bar">
-                <div className={`step-pill ${step === 1 ? 'active' : ''} ${step > 1 ? 'completed' : ''}`}>
-                  <span className="num">1</span>
-                  <span>Delivery Address</span>
-                </div>
-                <div className="step-pill-divider" />
-                <div className={`step-pill ${step === 2 ? 'active' : ''}`}>
-                  <span className="num">2</span>
-                  <span>Payment Gateway</span>
-                </div>
+          <>
+            {/* Stepper Tabs Bar - Aligned across checkout top */}
+            <div className="checkout-steps-pill-bar">
+              <div className={`step-pill ${step === 1 ? 'active' : ''} ${step > 1 ? 'completed' : ''}`}>
+                <span className="num">1</span>
+                <span>Delivery Address</span>
               </div>
+              <div className="step-pill-divider" />
+              <div className={`step-pill ${step === 2 ? 'active' : ''}`}>
+                <span className="num">2</span>
+                <span>Payment Gateway</span>
+              </div>
+            </div>
 
-              {/* STEP 1: Address Form */}
-              {step === 1 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="checkout-card-section"
-                >
+            <div className="checkout-grid-2col">
+              {/* Left Column: Form & Payment Steps */}
+              <div className="checkout-left-col">
+                {/* STEP 1: Address Form */}
+                {step === 1 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="checkout-card-section"
+                  >
                   <h2 className="step-title">Where should we deliver your order?</h2>
                   <p className="step-desc">Enter your shipping details for insured express delivery.</p>
 
@@ -264,7 +265,7 @@ export default function CheckoutPage({
                       </div>
                     </div>
 
-                    <div style={{ marginTop: '28px', display: 'flex', justifyContent: 'flex-end' }}>
+                    <div style={{ marginTop: 'auto', paddingTop: '28px', display: 'flex', justifyContent: 'flex-end' }}>
                       <button type="submit" className="btn btn-primary btn-luxe-submit">
                         PROCEED TO PAYMENT <ArrowRight size={16} />
                       </button>
@@ -512,7 +513,8 @@ export default function CheckoutPage({
               </div>
             </div>
           </div>
-        ) : (
+        </>
+      ) : (
           /* STEP 3: HAUTE COUTURE LUXURY CELEBRATION SCREEN */
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}

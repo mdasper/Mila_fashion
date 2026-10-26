@@ -100,39 +100,23 @@ export default function App() {
     }, 3400);
   };
 
-  // Welcome Perks Modal State
-  const [welcomeModal, setWelcomeModal] = useState({
-    isOpen: false,
-    type: 'login', // 'signup' | 'login'
-    userName: '',
-    targetView: 'cart'
-  });
-
-  // Auth Success Handler
+  // Auth Success Handler - immediately routes to next page and displays top toast message
   const handleAuthSuccess = (user, targetView = 'cart', isSignup = false) => {
     setCurrentUser(user);
-    setWelcomeModal({
-      isOpen: true,
-      type: isSignup ? 'signup' : 'login',
-      userName: user.name,
-      targetView: targetView
-    });
-  };
 
-  const handleProceedFromWelcomeModal = () => {
-    const target = welcomeModal.targetView || 'cart';
-    setWelcomeModal((prev) => ({ ...prev, isOpen: false }));
-
-    if (target === 'cart') {
+    if (targetView === 'checkout') {
+      setCurrentView('checkout');
+    } else if (targetView === 'cart') {
       setCurrentView('home');
       setIsCartOpen(true);
-      showToast(`Welcome to Mila Fashions, ${welcomeModal.userName}! Your bag is ready.`);
-    } else if (target === 'checkout') {
-      setCurrentView('checkout');
-      showToast(`Welcome, ${welcomeModal.userName}! Proceeding to payment.`);
     } else {
       setCurrentView('home');
-      showToast(`Welcome back, ${welcomeModal.userName}!`);
+    }
+
+    if (isSignup) {
+      showToast(`✓ Sign up successfully completed! Welcome, ${user.name}`);
+    } else {
+      showToast(`✓ Login successfully completed! Welcome back, ${user.name}`);
     }
   };
 
@@ -273,14 +257,6 @@ export default function App() {
           onBackToStore={() => setCurrentView('home')}
           targetView={authRedirectTarget}
           cart={cart}
-        />
-        {/* Patron Welcome Perks Modal */}
-        <AuthWelcomeModal
-          isOpen={welcomeModal.isOpen}
-          type={welcomeModal.type}
-          userName={welcomeModal.userName}
-          onClose={() => setWelcomeModal((prev) => ({ ...prev, isOpen: false }))}
-          onProceed={handleProceedFromWelcomeModal}
         />
         {/* Toast Notifications */}
         <div className="toast-container">
