@@ -69,7 +69,8 @@ export default function AuthPage({
       <header className="luxe-auth-nav">
         <button className="luxe-nav-back" onClick={onBackToStore}>
           <ArrowLeft size={16} />
-          <span>RETURN TO BOUTIQUE</span>
+          <span className="nav-back-desktop">RETURN TO BOUTIQUE</span>
+          <span className="nav-back-mobile">BOUTIQUE</span>
         </button>
 
         <div className="luxe-nav-brand" onClick={onBackToStore}>
@@ -78,9 +79,9 @@ export default function AuthPage({
           <span className="luxe-brand-tag">ATELIER PRIVÉ</span>
         </div>
 
-        <div className="luxe-nav-security">
+        <div className="luxe-nav-security" title="256-Bit Encrypted Secure Atelier">
           <ShieldCheck size={14} color="var(--accent-gold)" />
-          <span>256-BIT ENCRYPTED</span>
+          <span className="nav-sec-text">256-BIT ENCRYPTED</span>
         </div>
       </header>
 

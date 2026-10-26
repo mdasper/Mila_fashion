@@ -3718,6 +3718,556 @@ button, input, select {
   transform: translateY(-1px);
 }
 
+/* ============================================================
+   HAUTE COUTURE BESPOKE MOBILE ALIGNMENT SYSTEM (< 900px & < 600px)
+   Engineered to resolve all mobile alignment, text-wrapping & overflow
+   ============================================================ */
+
+.mobile-header-tag {
+  display: none;
+}
+.nav-back-mobile {
+  display: none;
+}
+.checkout-back-mobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  /* 1. Header Precision Alignment */
+  .site-header {
+    height: auto;
+  }
+
+  .header-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 64px;
+    width: 95%;
+    max-width: 100%;
+    padding: 0 4px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .mobile-header-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--palette-forest-moss);
+    background: var(--bg-tinted);
+    border: 1px solid var(--border-sage);
+    border-radius: 14px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  .header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .brand-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brand-monogram {
+    font-size: 1.05rem;
+    line-height: 1;
+    margin-bottom: 1px;
+  }
+
+  .brand-name {
+    font-size: 1.15rem;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+    white-space: nowrap;
+    line-height: 1.1;
+  }
+
+  .brand-tagline {
+    display: none; /* Keep header ultra-clean without multi-row clutter */
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .desktop-only-search {
+    display: none !important;
+  }
+
+  .desktop-only-wishlist {
+    display: none !important;
+  }
+
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .btn-header-signin {
+    padding: 6px 12px;
+    font-size: 0.72rem;
+    gap: 4px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .patron-profile-chip {
+    padding: 3px 8px 3px 4px;
+    gap: 6px;
+  }
+
+  .patron-avatar-badge {
+    width: 28px;
+    height: 28px;
+    font-size: 0.76rem;
+  }
+
+  .patron-name-label {
+    display: none;
+  }
+
+  .patron-tier-tag {
+    font-size: 0.54rem;
+    letter-spacing: 0.08em;
+  }
+
+  .patron-dropdown-card {
+    right: -10px;
+    width: 270px;
+  }
+
+  /* 2. Announcement Bar on Mobile */
+  .announcement-bar {
+    font-size: 0.7rem;
+    line-height: 1.35;
+    padding: 7px 34px 7px 12px;
+    letter-spacing: 0.02em;
+  }
+
+  /* 3. Hero Section Alignment */
+  .hero-viewport {
+    min-height: 520px;
+    padding: 70px 20px 45px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-content.fullwidth-hero-content {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .hero-subhead {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    padding: 5px 14px;
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 7.8vw, 2.7rem);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+
+  .hero-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 13px 20px;
+    font-size: 0.8rem;
+  }
+
+  /* 4. Brand Perks Bar */
+  .perks-bar {
+    grid-template-columns: 1fr;
+    padding: 18px 20px;
+    gap: 12px;
+  }
+
+  .perk-item {
+    padding: 4px 0;
+  }
+
+  .perk-icon-wrap {
+    width: 42px;
+    height: 42px;
+  }
+
+  .perk-icon-wrap svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .perk-item h4 {
+    font-size: 0.86rem;
+  }
+
+  .perk-item p {
+    font-size: 0.75rem;
+  }
+
+  /* 5. Catalog Controls & Horizontal Category Stream */
+  .controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+  }
+
+  .category-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 2px 2px 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -4px;
+  }
+
+  .category-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cat-tab {
+    flex: 0 0 auto;
+    padding: 8px 16px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .sort-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+
+  .sort-wrapper select {
+    flex: 1;
+    max-width: 200px;
+    padding: 7px 12px;
+    font-size: 0.8rem;
+  }
+
+  /* 6. Products Grid - High-End 2-Column Mobile Alignment */
+  .products-grid.fullwidth-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+  }
+
+  .product-info {
+    padding: 12px 10px;
+  }
+
+  .product-cat {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+
+  .product-name {
+    font-size: 0.84rem;
+    line-height: 1.25;
+    min-height: 2.1em;
+    margin: 3px 0 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-rating {
+    font-size: 0.68rem;
+    margin-bottom: 6px;
+  }
+
+  .sizes-preview {
+    display: none; /* Hide sizes preview on mobile to prevent cards from vertical distortion */
+  }
+
+  .product-pricing {
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+
+  .price-current {
+    font-size: 0.96rem;
+    font-weight: 700;
+  }
+
+  .price-original {
+    font-size: 0.76rem;
+  }
+
+  .discount-badge {
+    font-size: 0.64rem;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  .card-order-action-bar {
+    margin-top: 6px;
+  }
+
+  .btn-card-order-now {
+    padding: 8px 10px;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    border-radius: 5px;
+  }
+
+  .wishlist-toggle {
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .product-badge {
+    top: 8px;
+    left: 8px;
+    font-size: 0.58rem;
+    padding: 3px 7px;
+  }
+
+  /* 7. Bottom Navigation Margin Fix */
+  body {
+    padding-bottom: 86px !important;
+  }
+
+  .site-footer {
+    padding-bottom: 30px;
+  }
+
+  .footer-bottom {
+    margin-bottom: 30px;
+  }
+
+  /* 8. About & Reviews Alignment */
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 18px 0;
+  }
+
+  .stat-box h3 {
+    font-size: 1.5rem;
+  }
+
+  .stat-box p {
+    font-size: 0.68rem;
+  }
+}
+
+/* 9. Auth Page Mobile Alignment (< 600px) */
+@media (max-width: 600px) {
+  .nav-back-desktop {
+    display: none !important;
+  }
+  .nav-back-mobile {
+    display: inline !important;
+  }
+  .nav-sec-text {
+    display: none !important;
+  }
+
+  .luxe-auth-nav {
+    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  .luxe-nav-back {
+    font-size: 0.72rem;
+    gap: 4px;
+  }
+
+  .luxe-brand-name {
+    font-size: 0.96rem;
+    letter-spacing: 0.18em;
+    white-space: nowrap;
+  }
+
+  .luxe-monogram {
+    font-size: 1.2rem;
+  }
+
+  .luxe-brand-tag {
+    font-size: 0.48rem;
+    letter-spacing: 0.18em;
+  }
+
+  .luxe-nav-security {
+    justify-content: flex-end;
+  }
+
+  .luxe-auth-form-col {
+    padding: 24px 18px 40px;
+  }
+
+  .luxe-form-title {
+    font-size: 1.65rem;
+  }
+
+  .luxe-form-subtitle {
+    font-size: 0.82rem;
+  }
+
+  .luxe-field-row {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  /* 10. Checkout Page Mobile Alignment (< 600px) */
+  .checkout-back-desktop {
+    display: none !important;
+  }
+  .checkout-back-mobile {
+    display: inline !important;
+  }
+  .checkout-sec-text {
+    display: none !important;
+  }
+
+  .checkout-top-header {
+    padding: 12px 14px;
+  }
+
+  .checkout-header-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  .checkout-header-inner .brand-logo .brand-name {
+    font-size: 1rem;
+    letter-spacing: 0.16em;
+    white-space: nowrap;
+  }
+
+  .secure-badge {
+    justify-content: flex-end;
+    padding: 4px 6px;
+  }
+
+  .checkout-body-wrapper {
+    width: 95%;
+    padding: 0;
+    margin: 20px auto 40px;
+  }
+
+  .checkout-card-section {
+    padding: 20px 14px;
+    border-radius: 12px;
+  }
+
+  .checkout-steps-pill-bar {
+    gap: 6px;
+    justify-content: space-between;
+  }
+
+  .step-pill {
+    font-size: 0.72rem;
+    gap: 5px;
+  }
+
+  .step-pill .num {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
+
+  .step-pill-divider {
+    width: 16px;
+  }
+
+  /* 11. Welcome Perks Modal Mobile (< 600px) */
+  .auth-welcome-modal {
+    width: 94%;
+    padding: 26px 16px 20px;
+    border-radius: 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .crest-halo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .crest-letter {
+    font-size: 1.5rem;
+  }
+
+  .welcome-modal-title {
+    font-size: 1.45rem;
+  }
+
+  .welcome-modal-desc {
+    font-size: 0.8rem;
+    margin-bottom: 18px;
+  }
+
+  .welcome-perks-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .welcome-perk-card {
+    padding: 10px 12px;
+  }
+
+  .welcome-continue-btn {
+    padding: 12px 20px;
+    font-size: 0.78rem;
+  }
+}
+
 
 
 

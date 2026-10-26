@@ -130,7 +130,9 @@ export default function CheckoutPage({
       <header className="checkout-top-header">
         <div className="checkout-header-inner">
           <button className="back-to-store-btn" onClick={onBackToStore}>
-            <ArrowLeft size={16} /> Return to Boutique
+            <ArrowLeft size={16} />
+            <span className="checkout-back-desktop">Return to Boutique</span>
+            <span className="checkout-back-mobile">Boutique</span>
           </button>
 
           <div className="brand-logo" onClick={onBackToStore} style={{ cursor: 'pointer' }}>
@@ -138,9 +140,9 @@ export default function CheckoutPage({
             <span className="brand-name">MILA FASHIONS</span>
           </div>
 
-          <div className="secure-badge">
+          <div className="secure-badge" title="256-Bit Encrypted Bank Grade Gateway">
             <ShieldCheck size={16} color="var(--palette-forest-moss)" />
-            <span>256-Bit Encrypted</span>
+            <span className="checkout-sec-text">256-Bit Encrypted</span>
           </div>
         </div>
       </header>

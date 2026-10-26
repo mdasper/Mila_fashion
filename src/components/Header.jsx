@@ -83,6 +83,9 @@ export default function Header({
               <a href="#about" className="nav-link">Our Atelier</a>
               <a href="#contact" className="nav-link">Boutique</a>
             </nav>
+            <div className="mobile-header-tag">
+              <span>EST. 2024</span>
+            </div>
           </div>
 
           <div className="header-center">
@@ -94,7 +97,7 @@ export default function Header({
           </div>
 
           <div className="header-right">
-            <div className="search-box">
+            <div className="search-box desktop-only-search">
               <Search className="search-icon" size={16} />
               <input
                 type="text"
@@ -204,7 +207,7 @@ export default function Header({
               </button>
             )}
 
-            <button className="icon-btn" onClick={onOpenWishlist} title="Wishlist">
+            <button className="icon-btn desktop-only-wishlist" onClick={onOpenWishlist} title="Wishlist">
               <Heart size={18} />
               {wishlistCount > 0 && <span className="badge">{wishlistCount}</span>}
             </button>
