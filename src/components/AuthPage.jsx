@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ShieldCheck, Sparkles, User, Lock, Mail, Phone, Check, Crown, Eye, EyeOff } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ShieldCheck, Sparkles, User, Lock, Mail, Phone, Crown, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 
 export default function AuthPage({
   onAuthSuccess,
@@ -64,261 +63,249 @@ export default function AuthPage({
   };
 
   return (
-    <div className="luxe-auth-viewport">
+    <div className="atelier-auth-viewport">
       {/* Top Editorial Navigation Bar */}
-      <header className="luxe-auth-nav">
-        <button className="luxe-nav-back" onClick={onBackToStore}>
+      <header className="atelier-auth-navbar">
+        <button className="atelier-nav-back" onClick={onBackToStore} aria-label="Return to Boutique">
           <ArrowLeft size={16} />
-          <span className="nav-back-desktop">RETURN TO BOUTIQUE</span>
-          <span className="nav-back-mobile">BOUTIQUE</span>
+          <span className="nav-back-full">RETURN TO BOUTIQUE</span>
+          <span className="nav-back-short">BOUTIQUE</span>
         </button>
 
-        <div className="luxe-nav-brand" onClick={onBackToStore}>
-          <span className="luxe-monogram">M</span>
-          <span className="luxe-brand-name">MILA FASHIONS</span>
-          <span className="luxe-brand-tag">ATELIER PRIVÉ</span>
+        <div className="atelier-nav-brand" onClick={onBackToStore} role="button" tabIndex={0}>
+          <span className="atelier-brand-crest">M</span>
+          <span className="atelier-brand-title">MILA FASHIONS</span>
+          <span className="atelier-brand-sub">ATELIER PRIVÉ</span>
         </div>
 
-        <div className="luxe-nav-security" title="256-Bit Encrypted Secure Atelier">
-          <ShieldCheck size={14} color="var(--accent-gold)" />
-          <span className="nav-sec-text">256-BIT ENCRYPTED</span>
+        <div className="atelier-nav-security">
+          <ShieldCheck size={15} color="var(--accent-gold)" />
+          <span className="nav-sec-full">256-BIT SSL PROTECTED</span>
+          <span className="nav-sec-short">SECURE SSL</span>
         </div>
       </header>
 
-      {/* Main Luxury Split Stage */}
-      <main className="luxe-auth-stage">
-        {/* Left Column: Atmospheric Editorial Visual */}
-        <section className="luxe-auth-hero-col">
-          <div className="luxe-hero-media-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1200&auto=format&fit=crop"
-              alt="Mila Fashions Haute Couture"
-              className="luxe-hero-img"
-            />
-            <div className="luxe-hero-overlay" />
+      {/* Centered Haute Couture Atelier Portal */}
+      <main className="atelier-auth-main">
+        <div className="atelier-auth-card">
+          {/* Top Gold Crest Icon */}
+          <div className="atelier-card-crest">
+            <div className="crest-halo-gold">
+              <Crown size={20} color="var(--accent-gold)" />
+            </div>
+            <span className="crest-eyebrow">THE PATRON CIRCLE</span>
+            <h1 className="crest-headline">
+              {authMode === 'login' ? 'Patron Sign In' : 'Join The Atelier'}
+            </h1>
+            <p className="crest-tagline">
+              {authMode === 'login'
+                ? 'Sign in to access your private wardrobe, orders & master consultations.'
+                : 'Create your bespoke patron account to claim 10% welcome privileges.'}
+            </p>
           </div>
 
-          <div className="luxe-hero-content">
-            <div className="luxe-crest-chip">
-              <Crown size={13} color="var(--accent-gold)" />
-              <span>THE PATRON CIRCLE</span>
+          {/* If user is ordering a specific product, show sleek preview badge */}
+          {latestPiece && (
+            <div className="atelier-order-preview">
+              <img src={latestPiece.image} alt={latestPiece.name} className="order-preview-thumb" />
+              <div className="order-preview-meta">
+                <span className="preview-label">CURRENT ORDER IN PROGRESS</span>
+                <strong className="preview-name">{latestPiece.name}</strong>
+                <span className="preview-price">₹{latestPiece.price.toLocaleString('en-IN')} • Size {latestPiece.size}</span>
+              </div>
             </div>
+          )}
 
-            <h2 className="luxe-hero-tagline">
-              "Every silhouette woven with heritage, crafted for royalty."
-            </h2>
+          {/* Mode Switch Tabs */}
+          <div className="atelier-tabs-nav">
+            <button
+              type="button"
+              className={`atelier-tab-btn ${authMode === 'login' ? 'active' : ''}`}
+              onClick={() => setAuthMode('login')}
+            >
+              Sign In
+            </button>
+            <button
+              type="button"
+              className={`atelier-tab-btn ${authMode === 'signup' ? 'active' : ''}`}
+              onClick={() => setAuthMode('signup')}
+            >
+              Create Account
+            </button>
+          </div>
 
-            {/* If user is ordering a specific product, show sleek preview */}
-            {latestPiece && (
-              <div className="luxe-piece-order-badge">
-                <img src={latestPiece.image} alt={latestPiece.name} className="luxe-piece-thumb" />
-                <div className="luxe-piece-meta">
-                  <span className="luxe-piece-caption">PENDING BESPOKE ORDER:</span>
-                  <strong>{latestPiece.name}</strong>
-                  <span className="luxe-piece-price">₹{latestPiece.price.toLocaleString('en-IN')} • Size {latestPiece.size}</span>
-                </div>
-              </div>
-            )}
-
-            <div className="luxe-hero-perks-row">
-              <div className="luxe-perk-item">
-                <Sparkles size={14} color="var(--accent-gold)" />
-                <span>10% Welcome Atelier Privilege</span>
-              </div>
-              <div className="luxe-perk-item">
-                <Check size={14} color="var(--palette-sage-light)" />
-                <span>Complimentary Master Fitting</span>
-              </div>
-              <div className="luxe-perk-item">
-                <Check size={14} color="var(--palette-sage-light)" />
-                <span>Insured Express Delivery across India</span>
-              </div>
+          {/* Quick 1-Click VIP Patron Demo Access */}
+          <div
+            className="atelier-vip-demo-card"
+            onClick={handleDemoLogin}
+            role="button"
+            tabIndex={0}
+            title="Click to instantly sign in as VIP Patron"
+          >
+            <div className="vip-icon-wrap">
+              <Sparkles size={16} color="var(--accent-gold)" />
+            </div>
+            <div className="vip-text-wrap">
+              <span className="vip-badge-tag">1-CLICK INSTANT TEST PATRON</span>
+              <strong>Priyadharshini Raman (VIP Patron) ➔</strong>
             </div>
           </div>
-        </section>
 
-        {/* Right Column: Clean, Elegant High-End Form */}
-        <section className="luxe-auth-form-col">
-          <div className="luxe-form-container">
-            {/* Header info */}
-            <div className="luxe-form-header">
-              <span className="luxe-section-eyebrow">EXCLUSIVE ACCESS</span>
-              <h1 className="luxe-form-title">
-                {authMode === 'login' ? 'Patron Sign In' : 'Join the Atelier'}
-              </h1>
-              <p className="luxe-form-subtitle">
-                {authMode === 'login'
-                  ? 'Access your private wardrobe, orders & master tailor consultations.'
-                  : 'Create your bespoke patron account to claim 10% welcome privileges.'}
-              </p>
-            </div>
-
-            {/* Seamless Luxury Mode Tabs */}
-            <div className="luxe-tabs-wrapper">
-              <button
-                type="button"
-                className={`luxe-tab-trigger ${authMode === 'login' ? 'active' : ''}`}
-                onClick={() => setAuthMode('login')}
-              >
-                Sign In
-              </button>
-              <button
-                type="button"
-                className={`luxe-tab-trigger ${authMode === 'signup' ? 'active' : ''}`}
-                onClick={() => setAuthMode('signup')}
-              >
-                Create Account
-              </button>
-            </div>
-
-            {/* Clean, Refined VIP Quick Demo Pill */}
-            <div className="luxe-vip-demo-pill" onClick={handleDemoLogin}>
-              <div className="vip-pill-icon">
-                <Crown size={14} color="var(--accent-gold)" />
+          {/* Sign In Form */}
+          {authMode === 'login' && (
+            <form onSubmit={handleLoginSubmit} className="atelier-form-body">
+              <div className="atelier-input-group">
+                <label className="atelier-label">EMAIL ADDRESS OR MOBILE NUMBER</label>
+                <div className="atelier-input-wrapper">
+                  <Mail size={16} className="atelier-icon-field" />
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. priyadharshini@example.com"
+                    value={loginIdentifier}
+                    onChange={(e) => setLoginIdentifier(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="vip-pill-text">
-                <span className="vip-pill-label">1-Click Test Patron Access</span>
-                <strong>Priyadharshini Raman (VIP Patron) ➔</strong>
+
+              <div className="atelier-input-group">
+                <div className="atelier-label-row">
+                  <label className="atelier-label">PASSWORD</label>
+                  <a href="#forgot" onClick={(e) => { e.preventDefault(); alert("Password reset link has been dispatched to your registered email."); }} className="atelier-forgot-link">
+                    Forgot Password?
+                  </a>
+                </div>
+                <div className="atelier-input-wrapper">
+                  <Lock size={16} className="atelier-icon-field" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    placeholder="••••••••"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    className="atelier-pwd-toggle"
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label="Toggle password visibility"
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
               </div>
-            </div>
 
-            {/* Sign In Form */}
-            {authMode === 'login' && (
-              <form onSubmit={handleLoginSubmit} className="luxe-input-form">
-                <div className="luxe-field-group">
-                  <label>EMAIL ADDRESS OR MOBILE NUMBER</label>
-                  <div className="luxe-input-shell">
-                    <Mail size={16} className="luxe-input-icon" />
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. priyadharshini@example.com"
-                      value={loginIdentifier}
-                      onChange={(e) => setLoginIdentifier(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div className="luxe-field-group">
-                  <div className="luxe-label-row">
-                    <label>PASSWORD</label>
-                    <a href="javascript:void(0)" className="luxe-forgot-link">
-                      Forgot?
-                    </a>
-                  </div>
-                  <div className="luxe-input-shell">
-                    <Lock size={16} className="luxe-input-icon" />
-                    <input
-                      type={showPassword ? 'text' : 'password'}
-                      required
-                      placeholder="••••••••"
-                      value={loginPassword}
-                      onChange={(e) => setLoginPassword(e.target.value)}
-                    />
-                    <button
-                      type="button"
-                      className="luxe-pwd-toggle"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
-                    </button>
-                  </div>
-                </div>
-
-                <button type="submit" className="luxe-cta-button">
-                  <span>SIGN IN & CONTINUE</span>
-                  <ArrowRight size={16} />
-                </button>
-              </form>
-            )}
-
-            {/* Create Account (Sign Up) Form */}
-            {authMode === 'signup' && (
-              <form onSubmit={handleSignupSubmit} className="luxe-input-form">
-                <div className="luxe-field-group">
-                  <label>FULL NAME</label>
-                  <div className="luxe-input-shell">
-                    <User size={16} className="luxe-input-icon" />
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Priyadharshini Raman"
-                      value={signupData.name}
-                      onChange={(e) => setSignupData({ ...signupData, name: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                <div className="luxe-field-row">
-                  <div className="luxe-field-group">
-                    <label>MOBILE NUMBER</label>
-                    <div className="luxe-input-shell">
-                      <Phone size={16} className="luxe-input-icon" />
-                      <input
-                        type="tel"
-                        required
-                        pattern="[0-9]{10}"
-                        placeholder="9876543210"
-                        value={signupData.phone}
-                        onChange={(e) => setSignupData({ ...signupData, phone: e.target.value })}
-                      />
-                    </div>
-                  </div>
-                  <div className="luxe-field-group">
-                    <label>EMAIL ADDRESS</label>
-                    <div className="luxe-input-shell">
-                      <Mail size={16} className="luxe-input-icon" />
-                      <input
-                        type="email"
-                        required
-                        placeholder="priya@example.com"
-                        value={signupData.email}
-                        onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="luxe-field-group">
-                  <label>CREATE SECURE PASSWORD</label>
-                  <div className="luxe-input-shell">
-                    <Lock size={16} className="luxe-input-icon" />
-                    <input
-                      type={showPassword ? 'text' : 'password'}
-                      required
-                      placeholder="Minimum 6 characters"
-                      value={signupData.password}
-                      onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
-                    />
-                    <button
-                      type="button"
-                      className="luxe-pwd-toggle"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
-                    </button>
-                  </div>
-                </div>
-
-                <button type="submit" className="luxe-cta-button">
-                  <span>CREATE ACCOUNT & CLAIM 10% PERK</span>
-                  <ArrowRight size={16} />
-                </button>
-              </form>
-            )}
-
-            {/* Guest Checkout Alternative */}
-            <div className="luxe-guest-divider">
-              <span>OR</span>
-            </div>
-
-            <div style={{ textAlign: 'center' }}>
-              <button type="button" className="luxe-guest-link" onClick={handleGuestCheckout}>
-                Continue as Guest Patron (Skip password) ➔
+              <button type="submit" className="atelier-submit-btn">
+                <span>SIGN IN & CONTINUE</span>
+                <ArrowRight size={16} />
               </button>
+            </form>
+          )}
+
+          {/* Create Account Form */}
+          {authMode === 'signup' && (
+            <form onSubmit={handleSignupSubmit} className="atelier-form-body">
+              <div className="atelier-input-group">
+                <label className="atelier-label">FULL NAME</label>
+                <div className="atelier-input-wrapper">
+                  <User size={16} className="atelier-icon-field" />
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Priyadharshini Raman"
+                    value={signupData.name}
+                    onChange={(e) => setSignupData({ ...signupData, name: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="atelier-input-row">
+                <div className="atelier-input-group">
+                  <label className="atelier-label">MOBILE NUMBER</label>
+                  <div className="atelier-input-wrapper">
+                    <Phone size={16} className="atelier-icon-field" />
+                    <input
+                      type="tel"
+                      required
+                      pattern="[0-9]{10}"
+                      placeholder="9876543210"
+                      value={signupData.phone}
+                      onChange={(e) => setSignupData({ ...signupData, phone: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="atelier-input-group">
+                  <label className="atelier-label">EMAIL ADDRESS</label>
+                  <div className="atelier-input-wrapper">
+                    <Mail size={16} className="atelier-icon-field" />
+                    <input
+                      type="email"
+                      required
+                      placeholder="priya@example.com"
+                      value={signupData.email}
+                      onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="atelier-input-group">
+                <label className="atelier-label">CREATE SECURE PASSWORD</label>
+                <div className="atelier-input-wrapper">
+                  <Lock size={16} className="atelier-icon-field" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    placeholder="Minimum 6 characters"
+                    value={signupData.password}
+                    onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
+                  />
+                  <button
+                    type="button"
+                    className="atelier-pwd-toggle"
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label="Toggle password visibility"
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
+              </div>
+
+              <button type="submit" className="atelier-submit-btn">
+                <span>CREATE ACCOUNT & CLAIM 10% PERK</span>
+                <ArrowRight size={16} />
+              </button>
+            </form>
+          )}
+
+          {/* Guest Checkout Alternative */}
+          <div className="atelier-divider">
+            <span>OR</span>
+          </div>
+
+          <div className="atelier-guest-wrap">
+            <button type="button" className="atelier-guest-btn" onClick={handleGuestCheckout}>
+              Continue as Guest Patron (Skip Password) ➔
+            </button>
+          </div>
+
+          {/* Trust Guarantees */}
+          <div className="atelier-trust-strip">
+            <div className="trust-item">
+              <Sparkles size={13} color="var(--accent-gold)" />
+              <span>Pure Handloom Silk</span>
+            </div>
+            <div className="trust-item">
+              <CheckCircle2 size={13} color="var(--palette-forest-moss)" />
+              <span>Insured Delivery</span>
+            </div>
+            <div className="trust-item">
+              <ShieldCheck size={13} color="var(--accent-gold)" />
+              <span>256-Bit SSL</span>
             </div>
           </div>
-        </section>
+        </div>
       </main>
     </div>
   );

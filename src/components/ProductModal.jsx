@@ -19,34 +19,55 @@ export default function ProductModal({
     }
   }, [product]);
 
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen || !product) return null;
 
   return (
-    <div className="modal-overlay active" onClick={(e) => {
-      if (e.target === e.currentTarget) onClose();
-    }}>
-      <div className="quick-view-modal">
+    <div
+      className="modal-overlay active"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div className="quick-view-modal luxe-modal-box">
         <button className="modal-close" onClick={onClose} aria-label="Close modal">
           <X size={18} />
         </button>
 
         <div className="quick-view-grid">
+          {/* Gallery Column */}
           <div className="qv-gallery-col">
-            <img src={product.image} alt={product.name} className="qv-gallery-main" />
+            <div className="qv-image-wrapper">
+              <img src={product.image} alt={product.name} className="qv-gallery-main" />
+              {product.badge && (
+                <span className={`product-badge ${product.badgeType || 'badge-trending'}`}>
+                  {product.badge}
+                </span>
+              )}
+            </div>
           </div>
 
+          {/* Info Column */}
           <div className="qv-info-col">
-            <span className="qv-meta-cat">{product.category} • Mila Signature</span>
-            <h2 className="qv-title">{product.name}</h2>
-
-            <div className="product-rating" style={{ marginBottom: '14px' }}>
-              <span className="stars" style={{ display: 'inline-flex', gap: '2px' }}>
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} fill="#D4A346" stroke="#D4A346" />
-                ))}
-              </span>
-              <span>{product.rating} / 5.0 ({product.reviewsCount} reviews)</span>
+            <div className="qv-header-tag-row">
+              <span className="qv-meta-cat">{product.category} • Mila Atelier</span>
+              <div className="qv-rating-pill">
+                <Star size={12} fill="#D4A346" stroke="#D4A346" />
+                <span>{product.rating} ({product.reviewsCount} reviews)</span>
+              </div>
             </div>
+
+            <h2 className="qv-title">{product.name}</h2>
 
             <div className="qv-pricing">
               <span className="price-current current">₹{product.price.toLocaleString('en-IN')}</span>
@@ -59,7 +80,7 @@ export default function ProductModal({
             <div className="selector-heading">
               <span>Select Size:</span>
               <button className="size-guide-link" onClick={onOpenSizeGuide}>
-                Size Guide
+                Size Guide ➔
               </button>
             </div>
 
@@ -75,9 +96,10 @@ export default function ProductModal({
               ))}
             </div>
 
-            <div className="qv-actions-row">
+            {/* Clean, perfectly aligned action buttons */}
+            <div className="qv-actions-stack">
               <button
-                className="btn btn-primary"
+                className="btn btn-primary btn-modal-order"
                 onClick={() => {
                   if (onOrderNow) {
                     onOrderNow(product, selectedSize);
@@ -89,40 +111,42 @@ export default function ProductModal({
               >
                 <Sparkles size={16} /> ORDER NOW
               </button>
-              <button
-                className="btn btn-secondary"
-                onClick={() => {
-                  onAddToCart(product, selectedSize);
-                  onClose();
-                }}
-              >
-                <ShoppingBag size={16} /> ADD TO BAG
-              </button>
-              <button
-                className="icon-btn"
-                onClick={() => onToggleWishlist(product.id)}
-                title="Wishlist"
-              >
-                <Heart size={18} fill={isWishlisted ? 'var(--accent-rose)' : 'none'} color={isWishlisted ? 'var(--accent-rose)' : 'currentColor'} />
-              </button>
+
+              <div className="qv-secondary-actions-row">
+                <button
+                  className="btn btn-secondary btn-modal-addbag"
+                  onClick={() => {
+                    onAddToCart(product, selectedSize);
+                    onClose();
+                  }}
+                >
+                  <ShoppingBag size={15} /> ADD TO BAG
+                </button>
+                <button
+                  className={`icon-btn qv-wishlist-btn ${isWishlisted ? 'active' : ''}`}
+                  onClick={() => onToggleWishlist(product.id)}
+                  title="Save to Wishlist"
+                  aria-label="Wishlist"
+                >
+                  <Heart
+                    size={18}
+                    fill={isWishlisted ? 'var(--accent-rose)' : 'none'}
+                    color={isWishlisted ? 'var(--accent-rose)' : 'currentColor'}
+                  />
+                </button>
+              </div>
             </div>
 
-            <div style={{
-              background: 'var(--bg-main)',
-              padding: '16px',
-              borderRadius: '8px',
-              fontSize: '0.82rem',
-              color: 'var(--text-muted)',
-              border: '1px solid var(--border-light)'
-            }}>
-              <p style={{ marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Sparkles size={16} color="var(--palette-forest-moss)" />
-                <strong>Fabric & Care:</strong> {product.fabricCare}
-              </p>
-              <p style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle2 size={16} color="var(--palette-forest-moss)" />
-                Complimentary insured express delivery within 2–4 business days.
-              </p>
+            {/* Fabric & Delivery Assurance */}
+            <div className="qv-assurance-box">
+              <div className="assurance-line">
+                <Sparkles size={14} color="var(--palette-forest-moss)" />
+                <span><strong>Fabric & Craft:</strong> {product.fabricCare}</span>
+              </div>
+              <div className="assurance-line">
+                <CheckCircle2 size={14} color="var(--palette-forest-moss)" />
+                <span>Complimentary insured express delivery across India.</span>
+              </div>
             </div>
           </div>
         </div>
