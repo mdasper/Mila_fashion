@@ -11,7 +11,6 @@ import SizeGuideModal from './components/SizeGuideModal';
 import CartDrawer from './components/CartDrawer';
 import CheckoutPage from './components/CheckoutPage';
 import AuthPage from './components/AuthPage';
-import AuthWelcomeModal from './components/AuthWelcomeModal';
 import AboutSection from './components/AboutSection';
 import ReviewsSection from './components/ReviewsSection';
 import Footer from './components/Footer';
@@ -474,15 +473,6 @@ export default function App() {
             setCurrentView('checkout');
           }
         }}
-      />
-
-      {/* Patron Welcome Perks Modal */}
-      <AuthWelcomeModal
-        isOpen={welcomeModal.isOpen}
-        type={welcomeModal.type}
-        userName={welcomeModal.userName}
-        onClose={() => setWelcomeModal((prev) => ({ ...prev, isOpen: false }))}
-        onProceed={handleProceedFromWelcomeModal}
       />
 
       {/* Toast Notifications */}
