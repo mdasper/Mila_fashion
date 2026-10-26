@@ -100,7 +100,7 @@ export default function AuthPage({
             <p className="crest-tagline">
               {authMode === 'login'
                 ? 'Access your bespoke wardrobe, private orders & master tailoring.'
-                : 'Create your bespoke patron account to claim 10% welcome privileges.'}
+                : 'Create your bespoke patron account to access your private wardrobe.'}
             </p>
           </div>
 
@@ -178,7 +178,7 @@ export default function AuthPage({
               </div>
 
               <button type="submit" className="atelier-submit-btn">
-                <span>SIGN IN & CONTINUE</span>
+                <span>SIGN IN</span>
                 <ArrowRight size={16} />
               </button>
             </form>
@@ -257,13 +257,13 @@ export default function AuthPage({
               </div>
 
               <button type="submit" className="atelier-submit-btn">
-                <span>CREATE ACCOUNT & CLAIM 10% PERK</span>
+                <span>CREATE ACCOUNT</span>
                 <ArrowRight size={16} />
               </button>
             </form>
           )}
 
-          {/* Discreet, elegant 1-Click VIP Patron Demo chip (below button, neat and tidy) */}
+          {/* Discreet 1-Click VIP Patron Demo chip */}
           <div
             className="atelier-vip-pill"
             onClick={handleDemoLogin}
@@ -274,30 +274,6 @@ export default function AuthPage({
             <Sparkles size={13} color="var(--accent-gold)" />
             <span>1-Click VIP Demo: <strong>Priyadharshini Raman</strong></span>
             <ArrowRight size={12} />
-          </div>
-
-          {/* Guest Checkout Alternative */}
-          <div className="atelier-guest-wrap">
-            <span className="atelier-guest-or">or</span>
-            <button type="button" className="atelier-guest-btn" onClick={handleGuestCheckout}>
-              Continue as Guest Patron ➔
-            </button>
-          </div>
-
-          {/* Trust Guarantees */}
-          <div className="atelier-trust-strip">
-            <div className="trust-item">
-              <Sparkles size={12} color="var(--accent-gold)" />
-              <span>Pure Silk</span>
-            </div>
-            <div className="trust-item">
-              <CheckCircle2 size={12} color="var(--palette-forest-moss)" />
-              <span>Insured Delivery</span>
-            </div>
-            <div className="trust-item">
-              <ShieldCheck size={12} color="var(--accent-gold)" />
-              <span>256-Bit SSL</span>
-            </div>
           </div>
         </div>
       </main>
